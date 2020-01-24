@@ -1,6 +1,6 @@
 ﻿namespace Course.Entities
 {
-    class SavingsAccount : Account
+    sealed class SavingsAccount : Account
     {
         public double InterestRate { get; set; }
 
@@ -17,6 +17,12 @@
         public void UpdateBalance()
         {
             Balance += Balance * InterestRate;
+        }
+
+        public override void WithDraw(double amount) // Saque da Conta Poupança cobra a taxa de saque 2.0 a mais do que a Conta Comum
+        {
+            base.WithDraw(amount);
+            Balance -= 2.0;
         }
     }
 }
